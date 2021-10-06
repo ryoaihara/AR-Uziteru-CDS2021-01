@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<head>
+  <!-- ① スクリプトの読み込み -->
+  <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+  <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.2/aframe/build/aframe-ar.js"></script>
+</head>
+<body style='margin: 0; overflow: hidden;'>
+
+<!-- シーンの追加とデバックUIを非表示 -->
+<a-scene embedded arjs="debugUIEnabled:false;">
+
+   <!-- 3DCGモデルの読み込み -->
+   <a-assets>
+    <a-asset-item id="uzi1" src="asset/uziteru01/uziteru4.glb"></a-asset-item>
+    <video src="asset/movie/ico.avi" id="ico" loop="ture"></video>
+  </a-assets>
+
+
+
+
+  <!-- ② hiroマーカーでのソース -->
+  <a-marker preset="hiro">
+    <a-sphere scale=".25 .25 .25" position="0 .5 0" color="#f00">
+      <a-animation attribute="position" to="0 1 0" direction="alternate" dur="2000" repeat="indefinite">
+      </a-animation>
+    </a-sphere>
+  </a-marker>
+
+
+  <!-- ③ 作成したマーカーでのソース -->
+  <a-marker type='pattern' url='asset/uziteru01/pattern-marker1.patt'>
+    
+    <!--
+    <a-sphere scale=".25 .25 .25" position="0 .5 0" color="#f00">
+    </a-sphere>
+  -->
+
+     <!-- 3DCGモデルの呼び出し -->
+     
+     <a-gltf-model src="#uzi1" scale="0.5 0.5 0.5"></a-gltf-model>
+  
+    </a-marker>
+
+  <a-marker type='pattern' url='asset/movie01/movie01.patt'>
+    
+       
+  <a-videosphere src='#ico'></a-videosphere>
+    
+    </a-marker>  
+
+
+  <a-entity camera></a-entity>
+</a-scene>
+</body>
+</html>
